@@ -794,18 +794,18 @@
           <span class="rounded-full border border-slate-200 bg-slate-50 px-3.5 py-2">연간 결제 할인</span>
           <span class="rounded-full border border-slate-200 bg-slate-50 px-3.5 py-2">월 분납 가능</span>
         </div>
-        <div class="mt-7 inline-flex items-center rounded-2xl border border-slate-200 bg-slate-100 p-1.5 shadow-inner" id="pricingBillingToggle" role="group" aria-label="결제 방식 선택">
-          <button type="button" data-billing-option="annual" aria-pressed="true" class="whitespace-nowrap rounded-xl bg-white px-3 sm:px-6 py-2.5 text-xs sm:text-sm font-extrabold text-brand-700 shadow-sm transition-all">
-            연간 일시결제
-            <span class="hidden sm:inline-flex ml-1 rounded-full bg-blue-50 px-2 py-0.5 text-xs text-brand-600">할인 적용</span>
+        <div class="mt-7 inline-flex items-center gap-2 rounded-full bg-slate-100 p-1.5 shadow-inner" id="pricingBillingToggle" role="group" aria-label="결제 방식 선택">
+          <button type="button" data-billing-option="installment" aria-pressed="false" class="whitespace-nowrap rounded-full px-3.5 sm:px-4 py-2.5 text-xs sm:text-sm font-extrabold text-slate-500 transition-all">
+            약정 분납
           </button>
-          <button type="button" data-billing-option="installment" aria-pressed="false" class="whitespace-nowrap rounded-xl px-3 sm:px-6 py-2.5 text-xs sm:text-sm font-extrabold text-slate-500 transition-all hover:text-slate-800">
-            12개월 약정 분납
+          <button type="button" data-billing-switch role="switch" aria-checked="true" aria-label="연간 결제와 약정 분납 전환" class="relative h-7 w-12 flex-shrink-0 rounded-full bg-slate-300 p-1 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2">
+            <span data-billing-knob class="block h-5 w-5 translate-x-5 rounded-full bg-white shadow-sm transition-transform"></span>
+          </button>
+          <button type="button" data-billing-option="annual" aria-pressed="true" class="whitespace-nowrap rounded-full bg-brand-600 px-3.5 sm:px-4 py-2.5 text-xs sm:text-sm font-extrabold text-white shadow-sm transition-all">
+            연간 결제
+            <span class="ml-1 inline-flex rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] sm:text-xs font-black text-emerald-700">할인</span>
           </button>
         </div>
-        <p id="pricingBillingNote" class="mt-2.5 text-xs sm:text-sm font-semibold text-slate-500" aria-live="polite">
-          연간 일시결제 시 분납가보다 할인된 금액이 적용됩니다.
-        </p>
       </div>
 
       <!-- Pricing Cards Grid -->
@@ -821,8 +821,8 @@
             <h3 class="text-2xl font-black text-slate-900 mb-1">라이트</h3>
             <p class="text-sm text-slate-500 mb-6">가볍게 시작하는 기본형</p>
 
-            <div class="mb-8 p-5 bg-slate-50 rounded-2xl border border-slate-100" data-pricing-display data-annual-label="연간 일시결제" data-annual-amount="180만원" data-annual-sub="월 환산 15만원" data-annual-meta-label="분납 대비 절감" data-annual-meta-value="연 18만원 할인" data-installment-label="12개월 약정 분납" data-installment-amount="월 16.5만원" data-installment-sub="12개월 납부 · 연 198만원" data-installment-meta-label="약정 기간" data-installment-meta-value="12개월">
-              <span class="block text-xs font-extrabold text-slate-500 mb-1.5" data-price-label>연간 일시결제</span>
+            <div class="mb-8 p-5 bg-slate-50 rounded-2xl border border-slate-100" data-pricing-display data-annual-label="연간 일시결제 총액" data-annual-amount="180만원" data-annual-sub="월 환산 15만원" data-annual-meta-label="분납 대비 절감" data-annual-meta-value="연 18만원 할인" data-installment-label="12개월 약정 분납 총액" data-installment-amount="198만원" data-installment-sub="월 16.5만원씩 분납" data-installment-meta-label="약정 기간" data-installment-meta-value="12개월">
+              <span class="block text-xs font-extrabold text-slate-500 mb-1.5" data-price-label>연간 일시결제 총액</span>
               <div class="flex items-baseline gap-1.5">
                 <span class="text-3xl sm:text-4xl font-black text-slate-900" data-price-amount>180만원</span>
               </div>
@@ -871,8 +871,8 @@
             <h3 class="text-2xl font-black text-slate-900 mb-1">베이직</h3>
             <p class="text-sm text-slate-500 mb-6">가장 많은 기업이 먼저 검토하는 운영형</p>
 
-            <div class="mb-8 p-5 bg-blue-50/70 border border-blue-100 rounded-2xl" data-pricing-display data-annual-label="연간 일시결제" data-annual-amount="240만원" data-annual-sub="월 환산 20만원" data-annual-meta-label="분납 대비 절감" data-annual-meta-value="연 24만원 할인" data-installment-label="12개월 약정 분납" data-installment-amount="월 22만원" data-installment-sub="12개월 납부 · 연 264만원" data-installment-meta-label="약정 기간" data-installment-meta-value="12개월">
-              <span class="block text-xs font-extrabold text-brand-600 mb-1.5" data-price-label>연간 일시결제</span>
+            <div class="mb-8 p-5 bg-blue-50/70 border border-blue-100 rounded-2xl" data-pricing-display data-annual-label="연간 일시결제 총액" data-annual-amount="240만원" data-annual-sub="월 환산 20만원" data-annual-meta-label="분납 대비 절감" data-annual-meta-value="연 24만원 할인" data-installment-label="12개월 약정 분납 총액" data-installment-amount="264만원" data-installment-sub="월 22만원씩 분납" data-installment-meta-label="약정 기간" data-installment-meta-value="12개월">
+              <span class="block text-xs font-extrabold text-brand-600 mb-1.5" data-price-label>연간 일시결제 총액</span>
               <div class="flex items-baseline gap-1.5">
                 <span class="text-3xl sm:text-4xl font-black text-brand-700" data-price-amount>240만원</span>
               </div>
@@ -920,8 +920,8 @@
             <h3 class="text-2xl font-black text-slate-900 mb-1">플러스</h3>
             <p class="text-sm text-slate-500 mb-6">운영 고도화와 추가 지원까지 포함한 확장형</p>
 
-            <div class="mb-8 p-5 bg-slate-50 rounded-2xl border border-slate-100" data-pricing-display data-annual-label="연간 일시결제" data-annual-amount="300만원" data-annual-sub="월 환산 25만원" data-annual-meta-label="분납 대비 절감" data-annual-meta-value="연 30만원 할인" data-installment-label="12개월 약정 분납" data-installment-amount="월 27.5만원" data-installment-sub="12개월 납부 · 연 330만원" data-installment-meta-label="약정 기간" data-installment-meta-value="12개월">
-              <span class="block text-xs font-extrabold text-slate-500 mb-1.5" data-price-label>연간 일시결제</span>
+            <div class="mb-8 p-5 bg-slate-50 rounded-2xl border border-slate-100" data-pricing-display data-annual-label="연간 일시결제 총액" data-annual-amount="300만원" data-annual-sub="월 환산 25만원" data-annual-meta-label="분납 대비 절감" data-annual-meta-value="연 30만원 할인" data-installment-label="12개월 약정 분납 총액" data-installment-amount="330만원" data-installment-sub="월 27.5만원씩 분납" data-installment-meta-label="약정 기간" data-installment-meta-value="12개월">
+              <span class="block text-xs font-extrabold text-slate-500 mb-1.5" data-price-label>연간 일시결제 총액</span>
               <div class="flex items-baseline gap-1.5">
                 <span class="text-3xl sm:text-4xl font-black text-slate-900" data-price-amount>300만원</span>
               </div>
@@ -1636,21 +1636,28 @@
     // Pricing: annual payment / 12-month installment toggle
     (function initPricingBillingToggle() {
       const toggle = document.getElementById('pricingBillingToggle');
-      const note = document.getElementById('pricingBillingNote');
       if (!toggle) return;
 
       const buttons = toggle.querySelectorAll('[data-billing-option]');
+      const switchButton = toggle.querySelector('[data-billing-switch]');
+      const knob = toggle.querySelector('[data-billing-knob]');
       const priceDisplays = document.querySelectorAll('[data-pricing-display]');
+      let currentMode = 'annual';
 
       function setBillingMode(mode) {
+        currentMode = mode;
         buttons.forEach(button => {
           const isActive = button.dataset.billingOption === mode;
           button.setAttribute('aria-pressed', String(isActive));
-          button.classList.toggle('bg-white', isActive);
-          button.classList.toggle('text-brand-700', isActive);
+          button.classList.toggle('bg-brand-600', isActive);
+          button.classList.toggle('text-white', isActive);
           button.classList.toggle('shadow-sm', isActive);
           button.classList.toggle('text-slate-500', !isActive);
         });
+
+        const isAnnual = mode === 'annual';
+        switchButton.setAttribute('aria-checked', String(isAnnual));
+        knob.classList.toggle('translate-x-5', isAnnual);
 
         priceDisplays.forEach(display => {
           display.querySelector('[data-price-label]').textContent = display.dataset[`${mode}Label`];
@@ -1659,14 +1666,13 @@
           display.querySelector('[data-price-meta-label]').textContent = display.dataset[`${mode}MetaLabel`];
           display.querySelector('[data-price-meta-value]').textContent = display.dataset[`${mode}MetaValue`];
         });
-
-        note.textContent = mode === 'annual'
-          ? '연간 일시결제 시 분납가보다 할인된 금액이 적용됩니다.'
-          : '12개월 약정 기준으로 매월 동일한 금액을 분납합니다.';
       }
 
       buttons.forEach(button => {
         button.addEventListener('click', () => setBillingMode(button.dataset.billingOption));
+      });
+      switchButton.addEventListener('click', () => {
+        setBillingMode(currentMode === 'annual' ? 'installment' : 'annual');
       });
     })();
 
