@@ -795,15 +795,15 @@
           <span class="rounded-full border border-slate-200 bg-slate-50 px-3.5 py-2">월 분납 가능</span>
         </div>
         <div class="mt-7 inline-flex items-center gap-2 rounded-full bg-slate-100 p-1.5 shadow-inner" id="pricingBillingToggle" role="group" aria-label="결제 방식 선택">
-          <button type="button" data-billing-option="installment" aria-pressed="false" class="whitespace-nowrap rounded-full px-3.5 sm:px-4 py-2.5 text-xs sm:text-sm font-extrabold text-slate-500 transition-all">
-            약정 분납
-          </button>
-          <button type="button" data-billing-switch role="switch" aria-checked="true" aria-label="연간 결제와 약정 분납 전환" class="relative h-7 w-12 flex-shrink-0 rounded-full bg-slate-300 p-1 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2">
-            <span data-billing-knob class="block h-5 w-5 translate-x-5 rounded-full bg-white shadow-sm transition-transform"></span>
-          </button>
           <button type="button" data-billing-option="annual" aria-pressed="true" class="whitespace-nowrap rounded-full bg-brand-600 px-3.5 sm:px-4 py-2.5 text-xs sm:text-sm font-extrabold text-white shadow-sm transition-all">
             연간 결제
             <span class="ml-1 inline-flex rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] sm:text-xs font-black text-emerald-700">할인</span>
+          </button>
+          <button type="button" data-billing-switch role="switch" aria-checked="false" aria-label="연간 결제와 약정 분납 전환" class="relative h-7 w-12 flex-shrink-0 rounded-full bg-slate-300 p-1 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2">
+            <span data-billing-knob class="block h-5 w-5 rounded-full bg-white shadow-sm transition-transform"></span>
+          </button>
+          <button type="button" data-billing-option="installment" aria-pressed="false" class="whitespace-nowrap rounded-full px-3.5 sm:px-4 py-2.5 text-xs sm:text-sm font-extrabold text-slate-500 transition-all">
+            약정 분납
           </button>
         </div>
       </div>
@@ -1371,7 +1371,7 @@
           </button>
           <div class="faq-content">
             <div class="px-6 pb-6 pt-5 text-slate-600 text-sm sm:text-base leading-relaxed border-t border-slate-200/60 bg-white">
-              네, 가능합니다. 기본 요금은 <strong class="text-slate-900 font-bold">12개월 약정 기준</strong>이며, 연간 결제뿐 아니라 <strong class="text-slate-900 font-bold">약정 기간 동안 분납하는 방식도 선택</strong>하실 수 있습니다. 결제 방식에 따라 적용되는 금액이 다르므로 자세한 내용은 요금제 안내 또는 상담을 통해 확인해 주세요.
+              네, 가능합니다. 기본 요금은 <strong class="text-slate-900 font-bold">12개월 약정 및 연간 일시결제 기준</strong>이며, 약정 기간 동안 <strong class="text-slate-900 font-bold">월 단위로 분납하는 방식도 선택</strong>하실 수 있습니다. 분납 시에는 연간 일시결제와 다른 요금이 적용됩니다.
             </div>
           </div>
         </div>
@@ -1655,9 +1655,9 @@
           button.classList.toggle('text-slate-500', !isActive);
         });
 
-        const isAnnual = mode === 'annual';
-        switchButton.setAttribute('aria-checked', String(isAnnual));
-        knob.classList.toggle('translate-x-5', isAnnual);
+        const isInstallment = mode === 'installment';
+        switchButton.setAttribute('aria-checked', String(isInstallment));
+        knob.classList.toggle('translate-x-5', isInstallment);
 
         priceDisplays.forEach(display => {
           display.querySelector('[data-price-label]').textContent = display.dataset[`${mode}Label`];
