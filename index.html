@@ -1169,7 +1169,7 @@
   </section>
 
   <!-- Inquiry Section (Subscribed B2B Form) -->
-  <section id="inquiry" class="py-20 lg:py-28 bg-[#f8fafc] border-t border-slate-200/80 relative">
+  <section id="inquiry" class="py-20 lg:py-28 bg-[#f8fafc] border-t border-slate-200/80 relative scroll-mt-20">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-2xl mx-auto mb-12">
@@ -1653,6 +1653,28 @@
   </button>
 
   <script>
+    // 외부 페이지에서 #inquiry로 직접 진입 시 로딩 중 레이아웃 변화에 따른 위치 이탈 방지
+    (function stabilizeInquiryAnchor() {
+      function alignInquiry() {
+        if (window.location.hash !== '#inquiry') return;
+        const target = document.getElementById('inquiry');
+        if (!target) return;
+        // 상단 고정 헤더(80px)를 고려한 위치로 즉시 이동 (전역 smooth-scroll 무시)
+        const header = document.getElementById('siteHeader');
+        const offset = header ? header.getBoundingClientRect().height : 80;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top: Math.max(0, top), behavior: 'instant' });
+      }
+      if (window.location.hash === '#inquiry') {
+        requestAnimationFrame(alignInquiry);
+        window.addEventListener('load', () => {
+          alignInquiry();
+          setTimeout(alignInquiry, 250);
+          setTimeout(alignInquiry, 900);
+        }, { once: true });
+      }
+      window.addEventListener('hashchange', () => requestAnimationFrame(alignInquiry));
+    })();
     // Pricing: annual payment / 12-month installment toggle
     (function initPricingBillingToggle() {
       const toggle = document.getElementById('pricingBillingToggle');
