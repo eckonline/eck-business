@@ -774,7 +774,7 @@
   </section>
 
   <!-- Pricing Section -->
-  <section id="pricing" class="py-20 lg:py-28 bg-white">
+  <section id="pricing" class="py-20 lg:py-28 bg-white scroll-mt-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-3xl mx-auto mb-14">
@@ -1653,27 +1653,42 @@
   </button>
 
   <script>
-    // 외부 페이지에서 #inquiry로 직접 진입 시 로딩 중 레이아웃 변화에 따른 위치 이탈 방지
-    (function stabilizeInquiryAnchor() {
-      function alignInquiry() {
-        if (window.location.hash !== '#inquiry') return;
-        const target = document.getElementById('inquiry');
+    // 직접 링크(#pricing / #inquiry) 진입 시 이미지·폰트 로딩에 따른 위치 어긋남 보정
+    (function stabilizeDirectAnchors() {
+      const supportedAnchors = new Set(['#pricing', '#inquiry']);
+      let pendingTimers = [];
+
+      function alignAnchor() {
+        const hash = window.location.hash;
+        if (!supportedAnchors.has(hash)) return;
+        const target = document.getElementById(hash.slice(1));
         if (!target) return;
-        // 상단 고정 헤더(80px)를 고려한 위치로 즉시 이동 (전역 smooth-scroll 무시)
         const header = document.getElementById('siteHeader');
         const offset = header ? header.getBoundingClientRect().height : 80;
         const top = target.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top: Math.max(0, top), behavior: 'instant' });
+        // html.scroll-smooth 적용 중에도 정확한 좌표로 즉시 맞추기
+        const root = document.documentElement;
+        const previous = root.style.scrollBehavior;
+        root.style.scrollBehavior = 'auto';
+        window.scrollTo(0, Math.max(0, top));
+        root.style.scrollBehavior = previous;
       }
-      if (window.location.hash === '#inquiry') {
-        requestAnimationFrame(alignInquiry);
-        window.addEventListener('load', () => {
-          alignInquiry();
-          setTimeout(alignInquiry, 250);
-          setTimeout(alignInquiry, 900);
-        }, { once: true });
+
+      function scheduleAlignment() {
+        pendingTimers.forEach(clearTimeout);
+        pendingTimers = [];
+        if (!supportedAnchors.has(window.location.hash)) return;
+        requestAnimationFrame(alignAnchor);
+        [120, 350, 900, 1600].forEach(delay => {
+          pendingTimers.push(setTimeout(alignAnchor, delay));
+        });
       }
-      window.addEventListener('hashchange', () => requestAnimationFrame(alignInquiry));
+
+      if (supportedAnchors.has(window.location.hash)) {
+        scheduleAlignment();
+        window.addEventListener('load', scheduleAlignment, { once: true });
+      }
+      window.addEventListener('hashchange', scheduleAlignment);
     })();
     // Pricing: annual payment / 12-month installment toggle
     (function initPricingBillingToggle() {
