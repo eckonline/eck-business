@@ -22,7 +22,6 @@
   <link rel="icon" type="image/png" href="./images/favicon.png">
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script defer src="https://js.tosspayments.com/v2/standard"></script>
   <!-- Pretendard Font CDN -->
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <!-- FontAwesome Icons CDN -->
@@ -809,11 +808,6 @@
         </div>
       </div>
 
-      <div class="mb-6 text-center text-sm text-slate-600">
-        <p>토스페이먼츠 테스트 모드 · 실제 청구가 발생하지 않습니다.</p>
-        <p id="pricingCheckoutStatus" role="status" hidden class="mt-2 font-semibold text-brand-700"></p>
-      </div>
-
       <!-- Pricing Cards Grid -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch mb-12" data-reveal="stagger">
         
@@ -856,9 +850,9 @@
           </div>
 
           <div class="pt-8">
-            <button type="button" data-checkout-plan="light" class="w-full block py-3.5 px-4 rounded-xl border border-slate-300 font-bold text-slate-700 hover:bg-slate-50 hover:border-slate-400 transition text-center">
-              라이트 결제하기
-            </button>
+            <a href="#inquiry" class="w-full block py-3.5 px-4 rounded-xl border border-slate-300 font-bold text-slate-700 hover:bg-slate-50 hover:border-slate-400 transition text-center">
+              라이트 문의하기
+            </a>
           </div>
         </div>
 
@@ -910,9 +904,9 @@
           </div>
 
           <div class="pt-8">
-            <button type="button" data-checkout-plan="basic" class="w-full block py-4 px-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-extrabold transition text-center shadow-primary">
-              베이직 결제하기
-            </button>
+            <a href="#inquiry" class="w-full block py-4 px-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-extrabold transition text-center shadow-primary">
+              베이직 도입 상담받기
+            </a>
           </div>
         </div>
 
@@ -959,9 +953,9 @@
           </div>
 
           <div class="pt-8">
-            <button type="button" data-checkout-plan="plus" class="w-full block py-3.5 px-4 rounded-xl border border-slate-300 font-bold text-slate-700 hover:bg-slate-50 hover:border-slate-400 transition text-center">
-              플러스 결제하기
-            </button>
+            <a href="#inquiry" class="w-full block py-3.5 px-4 rounded-xl border border-slate-300 font-bold text-slate-700 hover:bg-slate-50 hover:border-slate-400 transition text-center">
+              플러스 문의하기
+            </a>
           </div>
         </div>
 
@@ -1508,25 +1502,19 @@
   <!-- Footer -->
   <footer class="bg-slate-950 text-slate-400 py-12 text-xs border-t border-slate-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col md:flex-row justify-between items-start gap-6 pb-8 border-b border-slate-800">
-        <div class="min-w-0">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 pb-8 border-b border-slate-800">
+        <div>
           <div class="flex items-center space-x-3">
             <img src="./images/eck-logo-white.png" alt="ECK Education 로고" class="h-7 w-auto">
             <span class="text-slate-600">|</span>
             <span class="text-slate-300 font-bold">기업 전용 외국어 구독 서비스</span>
-          </div>
-          <div class="mt-3 space-y-1 text-slate-400 leading-relaxed break-keep break-words">
-            <p>(주)이씨케이교육 | 대표이사 : 임승빈 | TEL. 02-733-9950 | 사업자등록번호 : 101-81-66250 | 통신판매업 : 제2020-서울마포-3959호 | 개인정보관리 책임자 : 염경용</p>
-            <p>주소 : (신) 서울시 마포구 창전로2길 27 | (구) 서울시 마포구 신수동 101-25</p>
-            <p>EMAIL : eck@eckedu.com | COPYRIGHT ECK EDUCATION ALL RIGHTS RESERVED FOR FUTHER INFORMATION.</p>
-            <p>ECKEDU 호스팅서비스 사업자 : 주식회사 유엔아이티</p>
           </div>
           <p class="mt-2 text-slate-400 text-xs leading-relaxed">
             문의: 02-6359-5808 &nbsp;|&nbsp; 이메일: yhjeong@eckedu.com<span class="hidden sm:inline"> &nbsp;|&nbsp; </span><br class="sm:hidden">공식홈페이지: <a href="https://www.eckedu.com" target="_blank" class="text-slate-300 underline hover:text-white">www.eckedu.com</a>
           </p>
         </div>
 
-        <div class="flex flex-wrap gap-4 text-slate-300 font-medium md:shrink-0">
+        <div class="flex flex-wrap gap-4 text-slate-300 font-medium">
           <a href="https://www.eckedu.com" target="_blank" class="hover:text-white transition flex items-center">
             <i class="fa-solid fa-arrow-up-right-from-square mr-1.5 text-slate-500"></i> ECK교육 공식홈
           </a>
@@ -1536,7 +1524,8 @@
         </div>
       </div>
 
-      <div class="mt-6 flex flex-col sm:flex-row justify-end items-center text-slate-500 gap-3">
+      <div class="mt-6 flex flex-col sm:flex-row justify-between items-center text-slate-500 gap-3">
+        <p>© ECK Education Inc. All rights reserved.</p>
         <button onclick="openModal('privacyModal')" class="hover:text-slate-300 transition underline">
           개인정보처리방침
         </button>
@@ -1762,99 +1751,6 @@
       switchButton.addEventListener('click', () => {
         setBillingMode(currentMode === 'annual' ? 'installment' : 'annual');
       });
-
-      const checkoutStatus = document.getElementById('pricingCheckoutStatus');
-      const annualClientKey = 'test_ck_XZYkKL4MrjdN9Y2v66qo30zJwlEW';
-      const billingClientKey = 'test_ck_c19vZQXdArjgJWkUuJIYRcODFkVVYzL26N';
-      const plans = {
-        light: { name: '라이트', annual: 1200000, monthly: 110000 },
-        basic: { name: '베이직', annual: 1800000, monthly: 165000 },
-        plus: { name: '플러스', annual: 2400000, monthly: 220000 }
-      };
-      let checkoutPending = false;
-
-      function showCheckoutStatus(message) {
-        checkoutStatus.textContent = message;
-        checkoutStatus.hidden = false;
-      }
-
-      async function openTestCheckout(plan) {
-        if (checkoutPending) return;
-        if (!window.isSecureContext || !/^https?:$/.test(window.location.protocol)) {
-          showCheckoutStatus('테스트 결제창은 HTTPS 테스트 사이트 또는 localhost에서 열 수 있어요.');
-          return;
-        }
-        if (typeof window.TossPayments !== 'function') {
-          showCheckoutStatus('토스페이먼츠를 불러오지 못했어요. 잠시 뒤 다시 시도해 주세요.');
-          return;
-        }
-
-        const isInstallment = currentMode === 'installment';
-        const netAmount = isInstallment ? plan.monthly : plan.annual;
-        const amountWithVat = netAmount + Math.round(netAmount / 10);
-        const formattedAmount = amountWithVat.toLocaleString('ko-KR');
-        const label = isInstallment
-          ? `월 ${formattedAmount}원 × 12개월`
-          : `${formattedAmount}원 일시납`;
-        if (!window.confirm(`${plan.name} · ${label} (VAT 포함)\n토스페이먼츠 테스트 화면을 열까요? 실제 청구는 발생하지 않습니다.`)) return;
-
-        const callback = new URL(window.location.pathname, window.location.origin);
-        callback.searchParams.set('checkoutMode', currentMode);
-        callback.searchParams.set('checkoutResult', 'success');
-        const successUrl = callback.href;
-        callback.searchParams.set('checkoutResult', 'fail');
-        const failUrl = callback.href;
-        const request = { method: 'CARD', windowTarget: 'self', successUrl, failUrl };
-
-        checkoutPending = true;
-        checkoutStatus.hidden = true;
-        try {
-          const clientKey = isInstallment ? billingClientKey : annualClientKey;
-          const payment = window.TossPayments(clientKey).payment({ customerKey: crypto.randomUUID() });
-          if (isInstallment) {
-            await payment.requestBillingAuth(request);
-          } else {
-            await payment.requestPayment({
-              ...request,
-              amount: { currency: 'KRW', value: amountWithVat },
-              orderId: crypto.randomUUID(),
-              orderName: `ECK교육 ${plan.name} 연간 일시납 테스트`
-            });
-          }
-        } catch (error) {
-          showCheckoutStatus(error?.code === 'USER_CANCEL'
-            ? '테스트 결제가 취소됐어요.'
-            : '토스페이먼츠 테스트 창을 열지 못했어요. 테스트 키와 상점 설정을 확인해 주세요.');
-        } finally {
-          checkoutPending = false;
-        }
-      }
-
-      document.querySelectorAll('[data-checkout-plan]').forEach(button => {
-        button.addEventListener('click', () => openTestCheckout(plans[button.dataset.checkoutPlan]));
-      });
-
-      const resultUrl = new URL(window.location.href);
-      const result = resultUrl.searchParams.get('checkoutResult');
-      if (result === 'success' || result === 'fail') {
-        const isInstallment = resultUrl.searchParams.get('checkoutMode') === 'installment';
-        const code = resultUrl.searchParams.get('code');
-        const returnedFromToss = isInstallment
-          ? resultUrl.searchParams.has('authKey') && resultUrl.searchParams.has('customerKey')
-          : resultUrl.searchParams.has('paymentKey') && resultUrl.searchParams.has('orderId');
-
-        window.history.replaceState(null, '', window.location.pathname + '#pricing');
-        setBillingMode(isInstallment ? 'installment' : 'annual');
-        if (result === 'success' && returnedFromToss) {
-          showCheckoutStatus(isInstallment
-            ? '테스트 카드 인증에서 돌아왔어요. 빌링키 발급과 12개월 청구는 서버 연동이 필요해요.'
-            : '테스트 결제 인증에서 돌아왔어요. 결제 승인에는 서버 연동이 필요해요.');
-        } else {
-          showCheckoutStatus(code === 'PAY_PROCESS_CANCELED'
-            ? '테스트 결제가 취소됐어요.'
-            : '테스트 인증을 완료하지 못했어요. 요금제를 선택해 다시 시도해 주세요.');
-        }
-      }
     })();
 
     // FAQ Accordion Toggle
