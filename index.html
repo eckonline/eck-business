@@ -1790,10 +1790,13 @@
         }
 
         const isInstallment = currentMode === 'installment';
+        const netAmount = isInstallment ? plan.monthly : plan.annual;
+        const amountWithVat = netAmount + Math.round(netAmount / 10);
+        const formattedAmount = amountWithVat.toLocaleString('ko-KR');
         const label = isInstallment
-          ? `월 ${plan.monthly.toLocaleString('ko-KR')}원 × 12개월`
-          : `${plan.annual.toLocaleString('ko-KR')}원 일시납`;
-        if (!window.confirm(`${plan.name} · ${label} (VAT 별도)\n토스페이먼츠 테스트 화면을 열까요? 실제 청구는 발생하지 않습니다.`)) return;
+          ? `월 ${formattedAmount}원 × 12개월`
+          : `${formattedAmount}원 일시납`;
+        if (!window.confirm(`${plan.name} · ${label} (VAT 포함)\n토스페이먼츠 테스트 화면을 열까요? 실제 청구는 발생하지 않습니다.`)) return;
 
         const callback = new URL(window.location.pathname, window.location.origin);
         callback.searchParams.set('checkoutMode', currentMode);
@@ -1813,7 +1816,7 @@
           } else {
             await payment.requestPayment({
               ...request,
-              amount: { currency: 'KRW', value: plan.annual },
+              amount: { currency: 'KRW', value: amountWithVat },
               orderId: crypto.randomUUID(),
               orderName: `ECK교육 ${plan.name} 연간 일시납 테스트`
             });
